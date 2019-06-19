@@ -1,17 +1,103 @@
-li {
-  width: 30%;
-  border: 2px black solid; 
-  margin: 2px; 
-  padding: 2px; 
-  height: 30%; 
-  float: left; 
-} 
-
-img {
-  height: auto;
-  width: 150px;
-  border: 5px dotted black; 
-  margin: 50px;
-  padding: 50px; 
+body {
+  padding: 20px;
+  background-color: black;
 }
 
+header {
+  background-color: grey;
+  color: white;
+  margin: auto;
+  padding: 10px;
+  width: 1280px;
+  overflow: auto;
+}
+
+header > div {
+  float: left;
+}
+
+header > div > img, h1 {
+  float: left;
+}
+
+header > div > img {
+  margin-right: 10px;
+}
+
+h1 {
+  font-size: 50px;
+  color:white;
+  padding: 10px 0px;
+}
+
+nav {
+  background-color: grey;
+  float: right;
+  height: 70px;
+  width: 500px;
+}
+
+nav > h3 {
+  float: left;
+  font-size: 20px;
+  margin: 25px auto;
+  text-align: center;
+  width: 125px;
+}
+
+main {
+  background-color: grey;
+  margin: 20px auto;
+  padding: 10px;
+  overflow: auto;
+  font-size: 0px;
+  width: 1280px;
+}
+
+main > div:first-child {
+  /* display: inline-block; */
+  float: left;
+  margin-right: 10px;
+  width: 290px;
+}
+
+main > div:last-child {
+  /* display: inline-block; */
+  float: left;
+  width: 980px;
+}
+
+#picWindow {
+  height: 500px;
+  float: left;
+  margin: auto;
+  overflow: auto;
+  width: 980px;
+}
+
+#picWindow > img {
+  float: left;
+  background-color: black;
+  height: 310px;
+  object-fit: contain;
+  padding: 5px;
+  width: 310px;
+}
+
+#picWindow > img:nth-child(2) {
+  margin: 0px 10px 0px 10px;
+}
+
+#charts {
+  /* float:left; */
+  height: 500px;
+  overflow: auto;
+  width: 980px;
+  margin: auto;
+}
+
+canvas {
+  height: 400px;
+  width: 900px;
+  margin: auto;
+}

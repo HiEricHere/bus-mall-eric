@@ -1,7 +1,7 @@
 'use strict';
 
 var picHistory = [];
-var globalClick = 0;
+var globalClick = 25;
 var imageData = [
   ['bag','./images/bag.jpg'],
   ['banana','./images/banana.jpg'],
@@ -36,7 +36,7 @@ function Image ( name, filepath ){
 
 Image.objectList = [];
 
-function loadData(){
+function loadPicData(){
   for ( var i = 0; i < imageData.length; i++ ){
     new Image ( imageData[i][0], imageData[i][1] );
     Image.objectList[i].id = i;
@@ -109,26 +109,88 @@ function disableListener(){
 function handleClick(event){
   event.preventDefault();
   for ( var i = 0; i < Image.objectList.length; i++ ){
-    console.log('ID: ' + event.target.id + ' ObjID: ' + Image.objectList[i].id);
     if ( Image.objectList[i].id === parseInt(event.target.id, 10) ){
       Image.objectList[i].likeCount++;
-      globalClick++;
-      console.log(globalClick);
+      globalClick--;
       break;
     }
   }
-  if ( globalClick === 25 ){
+  if ( globalClick === 0 ){
     disableListener();
+    renderBarChart();
   }
   getRandomImage();
 }
 
-//function(render out the results, add to disablelistener)
+//function render graph. add to or under disablelistener
+// create canvas element append to id charts
+// create bar chart
+
+function setupCanvas(){
+  var divElement = document.getElementById( 'charts' );
+  var canvasElement = document.createElement( 'canvas' );
+  canvasElement.id = 'barchart';
+  divElement.appendChild(canvasElement);
+}
+
+function renderBarChart(){
+  var label = [];
+  var likeData = [];
+  var displayData = [];
+
+  for ( var i = 0; i < Image.objectList.length; i++ ){
+    label.push( Image.objectList[i].name );
+    likeData.push( Image.objectList[i].likeCount );
+    displayData.push( Image.objectList[i].displayCount );
+  }
+
+  setupCanvas();
+  var canvasElement = document.getElementById( 'barchart' );
+  new Chart( canvasElement, {
+    type : 'bar',
+    data : {
+      labels : label,
+      datasets : [
+        {
+          label : 'Times Liked',
+          data : likeData,
+          backgroundColor : '#00F0FF'
+        },
+        {
+          label : 'Times Displayed',
+          data : displayData,
+          backgroundColor : '#FF5733'
+        }],
+      options: {
+        responsive: false,
+        maintainAspectRatio: true
+      }
+    }
+  });
+}
+
+
+// data : put the data points into an array
+//   bar data
+//   labels: [names]
+//   datasets: [ {object}, {object} ]
+//   object {
+//      label: enter label for data
+//      backgroundColor: background color
+//      data: data array
+//    }
+
+//implement a wipe animation on 25 clicks to replace the pictures
+
+//function render out the results, add to or under disablelistener
+
+//add user specified number of images flexibility
 
 function init(){
-  loadData();
+  loadPicData();
   getRandomImage();
   setupListener();
+
 }
 
 init();
