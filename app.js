@@ -1,7 +1,7 @@
 'use strict';
 
 var picHistory = [];
-var globalClick = 1;
+var globalClick = 25;
 var imageData = [
   ['bag','./images/bag.jpg'],
   ['banana','./images/banana.jpg'],
@@ -180,7 +180,7 @@ function renderBarChart(){
 //      data: data array
 //    }
 
-//implement a huge "DONE" on 25 clicks to replace the pictures
+//implement a wipe animation on 25 clicks to replace the pictures
 
 //function render out the results, add to or under disablelistener
 
