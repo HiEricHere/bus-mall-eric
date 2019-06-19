@@ -29,11 +29,27 @@ h1 {
   padding: 10px 0px;
 }
 
+nav {
+  background-color: grey;
+  float: right;
+  height: 70px;
+  width: 500px;
+}
+
+nav > h3 {
+  float: left;
+  font-size: 20px;
+  margin: 25px auto;
+  text-align: center;
+  width: 125px;
+}
+
 main {
   background-color: white;
-  margin: 10px;
+  margin: 20px auto;
   padding: 10px;
   overflow: auto;
+  width: 1280px;
 }
 
 #picWindow {
