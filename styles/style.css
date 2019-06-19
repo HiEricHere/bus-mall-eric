@@ -1,11 +1,49 @@
+body {
+  padding: 20px;
+  background-color: black;
+}
+
+header {
+  background-color: white;
+  margin: auto;
+  padding: 10px;
+  width: 1280px;
+  overflow: auto;
+}
+
+header > div {
+  float: left;
+}
+
+header > div > img, h1 {
+  float: left;
+}
+
+header > div > img {
+  margin-right: 10px;
+}
+
+h1 {
+  font-size: 50px;
+  color: red;
+  padding: 10px 0px;
+}
+
+main {
+  background-color: white;
+  margin: 10px;
+  padding: 10px;
+  overflow: auto;
+}
+
 #picWindow {
   height: 300px;
   overflow: auto;
 }
 
-img {
-  height: 250px;
-  width: auto;
+#picWindow > img {
+  height: auto;
+  width: 290px;
 }
 
 #charts {
