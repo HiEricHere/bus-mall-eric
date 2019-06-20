@@ -115,16 +115,16 @@ function handleClick(event){
       break;
     }
   }
+
   if ( globalClick === 0 ){
     disableListener();
     renderBarChart();
+    for ( var n = 0; n < Image.objectList.length; n++ ){
+      Image.objectList[n].setData();
+    }
   }
   getRandomImage();
 }
-
-//function render graph. add to or under disablelistener
-// create canvas element append to id charts
-// create bar chart
 
 function setupCanvas(){
   var divElement = document.getElementById( 'charts' );
@@ -169,16 +169,30 @@ function renderBarChart(){
   });
 }
 
+Image.prototype.setData = function(){
+  var dataset = {
+    displayCount : this.displayCount,
+    likeCount : this.likeCount
+  };
+  localStorage.setItem( this.name, JSON.stringify( dataset ) );
+};
 
-// data : put the data points into an array
-//   bar data
-//   labels: [names]
-//   datasets: [ {object}, {object} ]
-//   object {
-//      label: enter label for data
-//      backgroundColor: background color
-//      data: data array
-//    }
+Image.prototype.getData = function( storedData ){
+  var dataParsed = JSON.parse( storedData );
+  this.displayCount = dataParsed.displayCount;
+  this.likeCount = dataParsed.likeCount;
+};
+
+function loadStoredData(){
+  for (var i = 0; i < Image.objectList.length; i++ ){
+    var storedData = localStorage.getItem( Image.objectList[i].name );
+    if ( storedData ){
+      Image.objectList[i].getData( storedData );
+    } else {
+      Image.objectList[i].setData();
+    }
+  }
+}
 
 //implement a wipe animation on 25 clicks to replace the pictures
 
@@ -188,9 +202,9 @@ function renderBarChart(){
 
 function init(){
   loadPicData();
+  loadStoredData();
   getRandomImage();
   setupListener();
-
 }
 
 init();
